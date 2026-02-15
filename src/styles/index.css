@@ -1,16 +1,56 @@
 @import "tailwindcss";
 
+/* Light mode (default) */
+:root {
+  --color-bg: #F2F2F7;
+  --color-surface: #FFFFFF;
+  --color-surface-hover: #E5E5EA;
+  --color-border: #C6C6C8;
+  --color-text-primary: #1C1C1E;
+  --color-text-secondary: #8E8E93;
+  --color-accent: #FF375F;
+  --color-accent-hover: #E0253E;
+  --color-green: #34C759;
+  --color-red: #FF3B30;
+  --color-overlay: rgba(0, 0, 0, 0.4);
+  --color-player-bg: rgba(255, 255, 255, 0.95);
+  --color-play-btn: #1C1C1E;
+  --color-play-btn-text: #FFFFFF;
+}
+
+/* Dark mode */
+.dark {
+  --color-bg: #000000;
+  --color-surface: #1C1C1E;
+  --color-surface-hover: #2C2C2E;
+  --color-border: #38383A;
+  --color-text-primary: #F5F5F7;
+  --color-text-secondary: #8E8E93;
+  --color-accent: #FF375F;
+  --color-accent-hover: #E0253E;
+  --color-green: #30D158;
+  --color-red: #FF453A;
+  --color-overlay: rgba(0, 0, 0, 0.7);
+  --color-player-bg: rgba(28, 28, 30, 0.95);
+  --color-play-btn: #FFFFFF;
+  --color-play-btn-text: #000000;
+}
+
 @theme {
-  --color-bg: #0a0a0a;
-  --color-surface: #1a1a1a;
-  --color-surface-hover: #222222;
-  --color-border: #333333;
-  --color-text-primary: #e5e5e5;
-  --color-text-secondary: #999999;
-  --color-accent: #fa2d48;
-  --color-accent-hover: #e0253e;
-  --color-green: #34c759;
-  --color-red: #ff453a;
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-surface-hover: var(--color-surface-hover);
+  --color-border: var(--color-border);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-accent: var(--color-accent);
+  --color-accent-hover: var(--color-accent-hover);
+  --color-green: var(--color-green);
+  --color-red: var(--color-red);
+  --color-overlay: var(--color-overlay);
+  --color-player-bg: var(--color-player-bg);
+  --color-play-btn: var(--color-play-btn);
+  --color-play-btn-text: var(--color-play-btn-text);
 }
 
 body {

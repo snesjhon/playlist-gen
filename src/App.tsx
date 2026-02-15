@@ -4,10 +4,12 @@ import { hasKeys, getClaudeApiKey, getAppleMusicToken, clearKeys, saveSession, g
 import { generateAndMatch } from './lib/generateAndMatch'
 import { matchSongs } from './lib/musickit'
 import { initMusicKit, playSong, stopPlayback, onPlaybackStateChange, isPlaying as checkIsPlaying } from './lib/musickit'
+import { initTheme, setTheme, getStoredTheme, type Theme } from './lib/theme'
 import { SetupScreen } from './components/SetupScreen'
 import { PromptScreen } from './components/PromptScreen'
 import { ResultsScreen } from './components/ResultsScreen'
 import { PlayerBar } from './components/PlayerBar'
+import { ThemeToggle } from './components/ThemeToggle'
 
 export default function App() {
   const [screen, setScreen] = useState<Screen>(hasKeys() ? 'prompt' : 'setup')
@@ -19,6 +21,16 @@ export default function App() {
   const [error, setError] = useState('')
   const [musicKitReady, setMusicKitReady] = useState(false)
   const [playingSongId, setPlayingSongId] = useState<string | null>(null)
+  const [theme, setThemeState] = useState<Theme>(getStoredTheme)
+
+  useEffect(() => {
+    return initTheme()
+  }, [])
+
+  function handleThemeChange(newTheme: Theme) {
+    setTheme(newTheme)
+    setThemeState(newTheme)
+  }
 
   useEffect(() => {
     const token = getAppleMusicToken()
@@ -142,6 +154,10 @@ export default function App() {
 
   return (
     <div className={`${isResults ? 'max-w-6xl' : 'max-w-3xl'} mx-auto px-4 py-6 min-h-dvh`}>
+      <div className="flex justify-end mb-2">
+        <ThemeToggle theme={theme} onChange={handleThemeChange} />
+      </div>
+
       {error && screen === 'prompt' && (
         <div className="fixed top-4 left-1/2 -translate-x-1/2 bg-red text-white px-5 py-2.5 rounded-lg text-sm z-50 animate-[fadeIn_0.3s]">
           {error}
